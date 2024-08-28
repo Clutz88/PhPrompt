@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Traits;
+namespace Phprompt\Traits;
 
-use App\App;
+use Phprompt\App;
 
 trait StoresApp
 {

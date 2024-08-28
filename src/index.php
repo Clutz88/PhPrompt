@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\App;
+use Phprompt\App;
 
 // Install Composer, please don't change this.
 

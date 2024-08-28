@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Commands;
+namespace Phprompt\Commands;
 
-use App\App;
-use App\Contracts\Command;
 use Exception;
+use Phprompt\App;
+use Phprompt\Contracts\Command;
 
 class CommandFactory
 {
-    private string $namespace = 'App\\Commands\\';
+    private string $namespace = 'Phprompt\\Commands\\';
 
     /**
      * @throws Exception

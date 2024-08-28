@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Commands;
+namespace Phprompt\Commands;
 
-use App\Contracts\Command;
-use App\Traits\StoresApp;
+use Phprompt\Contracts\Command;
+use Phprompt\Traits\StoresApp;
 
 class PwdCommand implements Command
 {
