@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands;
 
-use App\Contracts\Command;
 use App\Traits\StoresApp;
+use App\Contracts\Command;
 
 class PwdCommand implements Command
 {
