@@ -9,7 +9,7 @@ class PwdCommand implements Command
 {
     use StoresApp;
 
-    public function run($input): string
+    public function run(string $input): string
     {
         return $this->app()->current_working_directory;
     }

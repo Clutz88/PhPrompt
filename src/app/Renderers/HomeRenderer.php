@@ -7,6 +7,7 @@ namespace App\Renderers;
 use App\App;
 use Chewie\Concerns\Aligns;
 use Chewie\Output\Lines;
+use Illuminate\Support\Collection;
 use function Laravel\Prompts\text;
 use Laravel\Prompts\Themes\Default\Renderer;
 
@@ -19,9 +20,9 @@ class HomeRenderer extends Renderer
      */
     public function __invoke(App $app): static
     {
-        $width = $app->terminal()->cols() - 2;
         collect($app->history)
-            ->map(fn ($line) => match($line['type']) {
+            /** @phpstan-ignore-next-line */
+            ->map(fn (array $line) => match($line['type']) {
                 'command' => $this->bold('$ '). $line['output'],
                 default => $line['output']
             })

@@ -19,6 +19,7 @@ class App extends Prompt
     public string $current_working_directory = '/home/php';
     public string $command = '';
     public string $result = '';
+    /** @var array<string> */
     public array $history = [];
 
     /*
@@ -30,8 +31,6 @@ class App extends Prompt
 
         KeyPressListener::for($this)
             ->on(Key::BACKSPACE, fn () => $this->command = strlen($this->command) ? substr($this->command, 0, -1) : '')
-            ->on(Key::CTRL_C, fn () => $this->cancel())
-            ->on(Key::CTRL_D, fn () => $this->terminal()->exit())
             ->on(Key::ENTER, fn () => $this->run())
             ->wildcard(fn($key) => $this->command .= $key)
             ->listen();
@@ -61,12 +60,6 @@ class App extends Prompt
 //            'print', 'echo' => (new PrintCommand())->run($input),
 //            default => $this->red('command not found: '.$cmd),
 //        };
-    }
-
-    private function cancel(): void
-    {
-        $this->history[] = ['type' => 'command', 'output' => $this->command];
-        $this->command = '';
     }
 
     /**

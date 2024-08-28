@@ -8,5 +8,5 @@ interface Command
 {
     public function __construct(App $app);
 
-    public function run($input): string;
+    public function run(string $input): string;
 }

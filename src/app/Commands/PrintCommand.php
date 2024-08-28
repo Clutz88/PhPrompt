@@ -10,7 +10,7 @@ class PrintCommand implements Command
 {
     use StoresApp;
 
-    public function run($input): string
+    public function run(string $input): string
     {
         return $input;
     }
