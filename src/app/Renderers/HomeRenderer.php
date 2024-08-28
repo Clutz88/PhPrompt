@@ -19,13 +19,13 @@ class HomeRenderer extends Renderer
     {
         collect($app->history)
             /** @phpstan-ignore-next-line */
-            ->map(fn (array $line) => match($line['type']) {
-                'command' => $this->bold('$ '). $line['output'],
+            ->map(fn (array $line) => match ($line['type']) {
+                'command' => $this->bold('$ ') . $line['output'],
                 default => $line['output']
             })
             ->each($this->line(...));
 
-        $this->line($this->bold('$ ').$app->command);
+        $this->line($this->bold('$ ') . $app->command);
         if ($app->result) {
             $this->line($app->result);
         }

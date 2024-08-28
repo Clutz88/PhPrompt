@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\App;
 
-# Install Composer, please don't change this.
+// Install Composer, please don't change this.
 
 require_once file_exists(__DIR__ . '/vendor/autoload.php')
     ? __DIR__ . '/vendor/autoload.php'
