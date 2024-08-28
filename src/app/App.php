@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Commands\CommandFactory;
-use App\Commands\PrintCommand;
-use Chewie\Input\KeyPressListener;
 use Laravel\Prompts\Key;
 use Laravel\Prompts\Prompt;
+use App\Commands\PrintCommand;
 use App\Renderers\HomeRenderer;
+use App\Commands\CommandFactory;
+use Chewie\Input\KeyPressListener;
 use Chewie\Concerns\RegistersRenderers;
 
 class App extends Prompt
@@ -30,9 +30,9 @@ class App extends Prompt
         $this->registerRenderer(HomeRenderer::class);
 
         KeyPressListener::for($this)
-            ->on(Key::BACKSPACE, fn () => $this->command = strlen($this->command) ? substr($this->command, 0, -1) : '')
+            ->on(Key::BACKSPACE, fn () => $this->command = mb_strlen($this->command) ? mb_substr($this->command, 0, -1) : '')
             ->on(Key::ENTER, fn () => $this->run())
-            ->wildcard(fn($key) => $this->command .= $key)
+            ->wildcard(fn ($key) => $this->command .= $key)
             ->listen();
     }
 
@@ -51,15 +51,16 @@ class App extends Prompt
 
         try {
             $class = (new CommandFactory)((string) $cmd, $this);
+
             return $class->run($input);
         } catch (\Throwable $exception) {
             return $this->red('command not found: '.$cmd);
         }
 
-//        return match ($cmd) {
-//            'print', 'echo' => (new PrintCommand())->run($input),
-//            default => $this->red('command not found: '.$cmd),
-//        };
+        //        return match ($cmd) {
+        //            'print', 'echo' => (new PrintCommand())->run($input),
+        //            default => $this->red('command not found: '.$cmd),
+        //        };
     }
 
     /**

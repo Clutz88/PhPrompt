@@ -6,9 +6,6 @@ namespace App\Renderers;
 
 use App\App;
 use Chewie\Concerns\Aligns;
-use Chewie\Output\Lines;
-use Illuminate\Support\Collection;
-use function Laravel\Prompts\text;
 use Laravel\Prompts\Themes\Default\Renderer;
 
 class HomeRenderer extends Renderer
