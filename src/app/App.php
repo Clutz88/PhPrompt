@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App;
 
 use App\Commands\CommandFactory;
-use App\Commands\PrintCommand;
+use App\Enums\CommandType;
+use App\Models\History;
 use App\Renderers\HomeRenderer;
 use Chewie\Concerns\RegistersRenderers;
 use Chewie\Input\KeyPressListener;
@@ -33,6 +34,7 @@ class App extends Prompt
         KeyPressListener::for($this)
             ->on(Key::BACKSPACE, fn () => $this->command = mb_strlen($this->command) ? mb_substr($this->command, 0, -1) : '')
             ->on(Key::ENTER, fn () => $this->run())
+            ->on(Key::CTRL_D, fn () => $this->quit())
             ->wildcard(fn ($key) => $this->command .= $key)
             ->listen();
     }
@@ -47,8 +49,8 @@ class App extends Prompt
 
     protected function run(): void
     {
-        $this->history[] = ['type' => 'command', 'output' => $this->command];
-        $this->history[] = ['type' => 'result', 'output' => $this->runCommand()];
+        $this->history[] = new History(CommandType::command, $this->command);
+        $this->history[] = new History(CommandType::result, $this->runCommand());
         $this->command = '';
     }
 
@@ -65,10 +67,11 @@ class App extends Prompt
         } catch (Throwable $exception) {
             return $this->red('command not found: ' . $cmd);
         }
+    }
 
-        //        return match ($cmd) {
-        //            'print', 'echo' => (new PrintCommand())->run($input),
-        //            default => $this->red('command not found: '.$cmd),
-        //        };
+    private function quit()
+    {
+        $this->command = 'exit';
+        $this->runCommand();
     }
 }
