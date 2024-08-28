@@ -17,3 +17,5 @@ tests/Fixtures/Saloon
 
 # environments/configs
 phpstan.neon
+
+node_modules
