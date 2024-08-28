@@ -1,6 +1,9 @@
 <?php
 
-$finder = Symfony\Component\Finder\Finder::create()
+use PhpCsFixer\Config;
+use Symfony\Component\Finder\Finder;
+
+$finder = Finder::create()
     ->in([
         __DIR__,
     ])
@@ -10,7 +13,7 @@ $finder = Symfony\Component\Finder\Finder::create()
     ->ignoreVCS(true)
     ->exclude(['vendor', 'node_modules']);
 
-$config = new PhpCsFixer\Config();
+$config = new Config();
 
 // Rules from: https://cs.symfony.com/doc/rules/index.html
 
