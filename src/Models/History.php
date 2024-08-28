@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace Phprompt\Models;
 
-use App\Enums\CommandType;
+use Phprompt\Enums\CommandType;
 
 class History
 {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace Phprompt;
 
-use App\Commands\CommandFactory;
-use App\Enums\CommandType;
-use App\Models\History;
-use App\Renderers\HomeRenderer;
 use Chewie\Concerns\RegistersRenderers;
 use Chewie\Input\KeyPressListener;
 use Laravel\Prompts\Key;
 use Laravel\Prompts\Prompt;
+use Phprompt\Commands\CommandFactory;
+use Phprompt\Enums\CommandType;
+use Phprompt\Models\History;
+use Phprompt\Renderers\HomeRenderer;
 use Throwable;
 
 class App extends Prompt

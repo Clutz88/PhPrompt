@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums;
+namespace Phprompt\Enums;
 
 enum CommandType
 {

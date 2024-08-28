@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Renderers;
+namespace Phprompt\Renderers;
 
-use App\App;
-use App\Enums\CommandType;
-use App\Models\History;
 use Chewie\Concerns\Aligns;
 use Laravel\Prompts\Themes\Default\Renderer;
+use Phprompt\App;
+use Phprompt\Enums\CommandType;
+use Phprompt\Models\History;
 
 class HomeRenderer extends Renderer
 {

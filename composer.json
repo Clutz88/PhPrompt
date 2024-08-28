@@ -1,7 +1,7 @@
 {
-    "name": "sammyjo20/ssh-php",
-    "description": "The ridiculously simple framework for building PHP SSH apps! 🔥",
-    "type": "project",
+    "name": "clutz88/phprompt",
+    "description": "A terminal emulator made in PHP",
+    "version": "0.0.1",
     "require": {
         "php": "^8.3",
         "laravel/prompts": "^0.1.24",
@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "./src/app"
+            "Phprompt\\": "./src"
         }
     },
     "autoload-dev": {
@@ -19,8 +19,8 @@
     },
     "authors": [
         {
-            "name": "Your Name",
-            "email": "youremail@example.com"
+            "name": "Chris Cutts",
+            "email": "chris@chriscutts.uk"
         }
     ],
     "minimum-stability": "stable",
@@ -37,12 +37,6 @@
         }
     },
     "scripts": {
-        "fix-code": [
-            "./vendor/bin/php-cs-fixer fix --allow-risky=yes"
-        ],
-        "pstan": [
-            "./vendor/bin/phpstan analyse"
-        ],
         "test": [
             "./vendor/bin/pest"
         ],
