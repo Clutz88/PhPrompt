@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App;
 
-use Laravel\Prompts\Key;
-use Laravel\Prompts\Prompt;
+use App\Commands\CommandFactory;
 use App\Commands\PrintCommand;
 use App\Renderers\HomeRenderer;
-use App\Commands\CommandFactory;
-use Chewie\Input\KeyPressListener;
 use Chewie\Concerns\RegistersRenderers;
+use Chewie\Input\KeyPressListener;
+use Laravel\Prompts\Key;
+use Laravel\Prompts\Prompt;
+use Throwable;
 
 class App extends Prompt
 {
@@ -36,6 +37,14 @@ class App extends Prompt
             ->listen();
     }
 
+    /**
+     * Get the value of the prompt.
+     */
+    public function value(): mixed
+    {
+        return null;
+    }
+
     protected function run(): void
     {
         $this->history[] = ['type' => 'command', 'output' => $this->command];
@@ -53,21 +62,13 @@ class App extends Prompt
             $class = (new CommandFactory)((string) $cmd, $this);
 
             return $class->run($input);
-        } catch (\Throwable $exception) {
-            return $this->red('command not found: '.$cmd);
+        } catch (Throwable $exception) {
+            return $this->red('command not found: ' . $cmd);
         }
 
         //        return match ($cmd) {
         //            'print', 'echo' => (new PrintCommand())->run($input),
         //            default => $this->red('command not found: '.$cmd),
         //        };
-    }
-
-    /**
-     * Get the value of the prompt.
-     */
-    public function value(): mixed
-    {
-        return null;
     }
 }
